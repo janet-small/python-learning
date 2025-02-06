@@ -1,5 +1,19 @@
 import math
 
+def add(x, y):
+    return x + y
+
+def subtract(x, y):
+    return x - y
+
+def multiply(x, y):
+    return x * y
+
+def divide(x, y):
+    if y == 0:
+        raise ValueError("Cannot divide by zero")
+    return x / y
+
 def advanced_calculator():
     history = []
     memory = 0
@@ -21,14 +35,23 @@ def advanced_calculator():
                 op = input("Operation (+,-,*,/): ")
                 num2 = float(input("Second number: "))
                 
-                if op == "/" and num2 == 0:
-                    print("Error: Cannot divide by zero")
+                if op == '+':
+                    result = add(num1, num2)
+                elif op == '-':
+                    result = subtract(num1, num2)
+                elif op == '*':
+                    result = multiply(num1, num2)
+                elif op == '/':
+                    result = divide(num1, num2)
+                else:
+                    print("Invalid operator")
                     continue
-                    
-                result = eval(f"{num1}{op}{num2}")
+                
                 print(f"Result: {result}")
                 history.append(f"{num1} {op} {num2} = {result}")
                 
+            except ValueError as e:
+                print(f"Error: {e}")
             except:
                 print("Invalid input")
                 
